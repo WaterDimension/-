@@ -1,0 +1,50 @@
+{
+  "desc": "项目索引文件",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    },
+    {
+      "action": "disallow",
+      "page": "pages/private/*"
+    },
+    {
+      "action": "allow",
+      "page": "pages/index/index"
+    },
+    {
+      "action": "allow",
+      "page": "pages/profile/profile"
+    },
+    {
+      "action": "allow",
+      "page": "pages/match/match"
+    },
+    {
+      "action": "allow",
+      "page": "pages/chat/chat"
+    },
+    {
+      "action": "allow",
+      "page": "pages/schedule/schedule"
+    },
+    {
+      "action": "allow",
+      "page": "pages/evaluation/evaluation"
+    },
+    {
+      "action": "allow",
+      "page": "pages/chat-room/chat-room"
+    }
+  ],
+  "pages": [
+    "pages/index/index",
+    "pages/profile/profile",
+    "pages/match/match",
+    "pages/chat/chat",
+    "pages/schedule/schedule",
+    "pages/evaluation/evaluation",
+    "pages/chat-room/chat-room"
+  ]
+}

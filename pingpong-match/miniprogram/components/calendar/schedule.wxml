@@ -1,0 +1,34 @@
+<view class="calendar">
+  <view class="header">
+    <view class="month-selector">
+      <view class="arrow" bindtap="handlePrevMonth">◀</view>
+      <view class="current-month">{{year}}年{{month}}月</view>
+      <view class="arrow" bindtap="handleNextMonth">▶</view>
+    </view>
+    <view class="weekdays">
+      <view class="weekday" wx:for="{{weekDays}}" wx:key="*this">
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <view class="days">
+    <view 
+      class="day {{!item.isCurrentMonth ? 'other-month' : ''}} {{selectedDate === (item.year + '-' + item.month + '-' + item.date) ? 'selected' : ''}}"
+      wx:for="{{days}}"
+      wx:key="index"
+      data-day="{{item}}"
+      bindtap="handleDateSelect"
+    >
+      <view class="date">{{item.date}}</view>
+      <view class="schedule-dots" wx:if="{{item.schedules.length}}">
+        <view 
+          class="dot {{schedule.type === 'match' ? 'match' : ''}}"
+          wx:for="{{item.schedules}}"
+          wx:for-item="schedule"
+          wx:key="_id"
+        ></view>
+      </view>
+    </view>
+  </view>
+</view>

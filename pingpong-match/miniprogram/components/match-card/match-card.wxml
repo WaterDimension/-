@@ -1,0 +1,93 @@
+<view class="match-card">
+  <view class="user-info">
+    <image class="avatar" src="{{userData.userInfo.avatarUrl}}" />
+    <view class="info-content">
+      <view class="name-level">
+        <text class="name">{{userData.userInfo.nickName}}</text>
+        <text class="level">{{userData.skillLevel}}级</text>
+      </view>
+      <view class="styles">
+        <text class="style-tag" wx:for="{{userData.playStyles}}" wx:key="*this">
+          {{item}}
+        </text>
+      </view>
+    </view>
+    <view class="match-score">
+      <text class="score">{{matchScore}}</text>
+      <text class="score-label">匹配度</text>
+    </view>
+  </view>
+
+  <view class="schedule-preview">
+    <text class="schedule-title">空闲时段</text>
+    <view class="schedule-list">
+      <view 
+        class="schedule-item"
+        wx:for="{{userData.schedule}}"
+        wx:for-index="day"
+        wx:for-item="times"
+        wx:key="day"
+      >
+        <text class="day">{{day}}</text>
+        <text class="times">{{times.join(', ')}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="btn btn-primary" bindtap="showMatch">发起约战</button>
+  </view>
+
+  <!-- 约战弹窗 -->
+  <view class="match-dialog {{showMatchDialog ? 'show' : ''}}">
+    <view class="dialog-mask" bindtap="closeMatch"></view>
+    <view class="dialog-content">
+      <view class="dialog-header">
+        <text class="dialog-title">发起约战</text>
+        <text class="dialog-close" bindtap="closeMatch">×</text>
+      </view>
+
+      <view class="dialog-body">
+        <view class="form-item">
+          <text class="label">选择时间</text>
+          <picker 
+            mode="time" 
+            value="{{selectedTime}}"
+            bindchange="handleTimeChange"
+          >
+            <view class="picker {{selectedTime ? '' : 'placeholder'}}">
+              {{selectedTime || '请选择时间'}}
+            </view>
+          </picker>
+        </view>
+
+        <view class="form-item">
+          <text class="label">地点</text>
+          <input 
+            class="input"
+            placeholder="请输入约战地点"
+            value="{{location}}"
+            data-field="location"
+            bindinput="handleInput"
+          />
+        </view>
+
+        <view class="form-item">
+          <text class="label">留言</text>
+          <textarea 
+            class="textarea"
+            placeholder="可以写下约战留言..."
+            value="{{message}}"
+            data-field="message"
+            bindinput="handleInput"
+          />
+        </view>
+      </view>
+
+      <view class="dialog-footer">
+        <button class="btn btn-secondary" bindtap="closeMatch">取消</button>
+        <button class="btn btn-primary" bindtap="handleSubmit">发送</button>
+      </view>
+    </view>
+  </view>
+</view>

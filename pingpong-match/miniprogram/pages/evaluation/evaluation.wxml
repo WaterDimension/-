@@ -1,0 +1,77 @@
+<view class="container">
+  <!-- 当前等级 -->
+  <view class="score-card">
+    <view class="score-title">当前技术评分</view>
+    <view class="score-value">{{currentScore}}</view>
+    <view class="score-level">{{skillLevel}}</view>
+  </view>
+
+  <!-- 评测题目 -->
+  <view class="questions">
+    <!-- 击球频率 -->
+    <view class="question-card">
+      <view class="question-header">
+        <text class="question-title">击球频率</text>
+        <text class="question-desc">您平均每周打球频率是？</text>
+      </view>
+      <view class="options">
+        <view 
+          wx:for="{{frequencyOptions}}" 
+          wx:key="value"
+          class="option-item {{frequency === item.value ? 'selected' : ''}}"
+          data-value="{{item.value}}"
+          bindtap="handleFrequencySelect"
+        >
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+
+   <!-- 技术掌握部分 -->
+<view class="question-card">
+  <view class="question-header">
+    <text class="question-title">技术掌握</text>
+    <text class="question-desc">您能熟练使用的技术有？（可多选）</text>
+  </view>
+  <view class="skill-options">
+    <view 
+      wx:for="{{skillOptions}}" 
+      wx:key="value"
+      class="skill-item {{selectedSkills.includes(item.value) ? 'selected' : ''}}"
+      data-value="{{item.value}}"
+      bindtap="handleSkillSelect"
+    >
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+</view>
+
+    <!-- 比赛经验 -->
+    <view class="question-card">
+      <view class="question-header">
+        <text class="question-title">比赛经验</text>
+        <text class="question-desc">您参加过的最高级别比赛是？</text>
+      </view>
+      <view class="options">
+        <view 
+          wx:for="{{experienceOptions}}" 
+          wx:key="value"
+          class="option-item {{experience === item.value ? 'selected' : ''}}"
+          data-value="{{item.value}}"
+          bindtap="handleExperienceSelect"
+        >
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button 
+    class="submit-btn"
+    disabled="{{submitting}}"
+    bindtap="handleSubmit"
+  >
+    {{submitting ? '提交中...' : '提交评测'}}
+  </button>
+</view>

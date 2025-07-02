@@ -1,0 +1,136 @@
+.container {
+  padding: 30rpx;
+  background: #f6f6f6;
+  min-height: 100vh;
+}
+
+.score-card {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 40rpx;
+  margin-bottom: 30rpx;
+  text-align: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.score-title {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.score-value {
+  font-size: 60rpx;
+  color: #1296db;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.score-level {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.question-card {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.question-header {
+  margin-bottom: 20rpx;
+}
+
+.question-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.question-desc {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.option-item {
+  flex: 1;
+  min-width: 45%;
+  margin: 10rpx;
+  padding: 20rpx;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.option-item.selected {
+  background: #1296db;
+  color: #fff;
+}
+
+.submit-btn {
+  width: 100%;
+  background: #1296db;
+  color: #fff;
+  font-size: 32rpx;
+  padding: 20rpx 0;
+  border-radius: 8rpx;
+  margin-top: 40rpx;
+}
+
+.submit-btn[disabled] {
+  background: #cccccc;
+}
+
+/* 技术掌握选项的特殊样式 */
+.skill-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  padding: 10rpx 0;
+}
+
+.skill-item {
+  width: calc(50% - 10rpx); /* 两列布局，减去间距 */
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.skill-item.selected {
+  background: #1296db;
+  color: #fff;
+  font-weight: 500;
+  transform: scale(0.98);
+}
+
+.skill-item:active {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+/* 确保按钮可以被点击 */
+.skill-item {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}

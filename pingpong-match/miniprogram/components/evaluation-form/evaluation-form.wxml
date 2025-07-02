@@ -1,0 +1,119 @@
+<wxs module="utils">
+  function isSkillSelected(basicSkills, itemName, level) {
+    for (var i = 0; i < basicSkills.length; i++) {
+      if (basicSkills[i].name === itemName && basicSkills[i].level === level) {
+        return true;
+      }
+    }
+    return false;
+  }
+  module.exports = {
+    isSkillSelected: isSkillSelected
+  }
+</wxs>
+
+<view class="evaluation-form">
+  <form bindsubmit="handleSubmit">
+    <!-- 打球年限 -->
+    <view class="form-item">
+      <view class="label">打球年限（年）</view>
+      <input 
+        type="digit" 
+        class="input {{errors.yearsPlaying ? 'input-error' : ''}}"
+        value="{{formData.yearsPlaying}}"
+        data-field="yearsPlaying"
+        bindinput="handleInput"
+      />
+      <view class="error-text" wx:if="{{errors.yearsPlaying}}">
+        {{errors.yearsPlaying}}
+      </view>
+    </view>
+
+    <!-- 训练频率 -->
+    <view class="form-item">
+      <view class="label">训练频率</view>
+      <radio-group 
+        class="radio-group"
+        data-field="trainingFrequency"
+        bindchange="handleInput"
+      >
+        <label 
+          class="radio-label {{formData.trainingFrequency === item.value ? 'selected' : ''}}"
+          wx:for="{{trainingFrequencyOptions}}"
+          wx:key="value"
+        >
+          <radio value="{{item.value}}" hidden />
+          {{item.label}}
+        </label>
+      </radio-group>
+      <view class="error-text" wx:if="{{errors.trainingFrequency}}">
+        {{errors.trainingFrequency}}
+      </view>
+    </view>
+
+    <!-- 技术评估 -->
+    <view class="form-item">
+      <view class="label">技术评估</view>
+      <view 
+        class="skill-item"
+        wx:for="{{technicalItems}}"
+        wx:key="name"
+      >
+        <view class="skill-header">
+          <text class="skill-name">{{item.label}}</text>
+          <text class="skill-desc">{{item.description}}</text>
+        </view>
+        <view class="skill-rating">
+          <view 
+            class="rating-item {{utils.isSkillSelected(formData.basicSkills, item.name, index + 1) ? 'selected' : ''}}"
+            wx:for="{{[1,2,3,4,5]}}" 
+            wx:for-item="index"
+            wx:key="*this"
+            data-skill="{{item.name}}"
+            data-level="{{index + 1}}"
+            bindtap="handleSkillLevel"
+          >
+            {{index + 1}}
+          </view>
+        </view>
+      </view>
+      <view class="error-text" wx:if="{{errors.basicSkills}}">
+        {{errors.basicSkills}}
+      </view>
+    </view>
+
+    <!-- 比赛经验 -->
+    <view class="form-item">
+      <view class="label">比赛经验</view>
+      <radio-group 
+        class="radio-group"
+        data-field="competitionExperience"
+        bindchange="handleInput"
+      >
+        <label 
+          class="radio-label {{formData.competitionExperience === item.value ? 'selected' : ''}}"
+          wx:for="{{competitionExperienceOptions}}"
+          wx:key="value"
+        >
+          <radio value="{{item.value}}" hidden />
+          {{item.label}}
+        </label>
+      </radio-group>
+      <view class="error-text" wx:if="{{errors.competitionExperience}}">
+        {{errors.competitionExperience}}
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="form-item">
+      <button 
+        class="submit-btn"
+        form-type="submit"
+        loading="{{isSubmitting}}"
+        disabled="{{isSubmitting}}"
+      >
+        提交评估
+      </button>
+    </view>
+  </form>
+</view>

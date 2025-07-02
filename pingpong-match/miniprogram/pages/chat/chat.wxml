@@ -1,0 +1,38 @@
+<view class="chat-page">
+  <view class="conversation-list">
+    <view 
+      class="conversation-item"
+      wx:for="{{conversations}}"
+      wx:key="_id"
+      data-conversation="{{item}}"
+      bindtap="navigateToChat"
+    >
+      <image 
+        class="avatar"
+        src="{{item.otherUser.userInfo.avatarUrl}}"
+        mode="aspectFill"
+      />
+      <view class="content">
+        <view class="header">
+          <text class="nickname">{{item.otherUser.userInfo.nickName}}</text>
+          <text class="time">{{item.lastMessageTime}}</text>
+        </view>
+        <view class="message">
+          <text class="text">{{item.lastMessage}}</text>
+          <view class="unread" wx:if="{{item.unreadCount > 0}}">
+            {{item.unreadCount}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:if="{{conversations.length === 0 && !loading}}">
+    <image class="empty-icon" src="/assets/images/empty.png" />
+    <text class="empty-text">暂无聊天记录</text>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+</view>

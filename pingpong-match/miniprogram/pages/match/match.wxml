@@ -1,0 +1,86 @@
+<view class="container">
+  <!-- 匹配条件筛选 -->
+  <view class="filter-section">
+    <view class="filter-header">
+      <text class="filter-title">匹配条件</text>
+    </view>
+    
+    <!-- 技术水平范围 -->
+    <view class="filter-item">
+      <text class="filter-label">技术水平</text>
+      <view class="level-range">
+        <text>{{levelRange[0]}} - {{levelRange[1]}}</text>
+        <slider 
+          class="range-slider" 
+          min="0" 
+          max="100" 
+          value="{{levelRange[1]}}"
+          bindchange="handleLevelRangeChange"
+        />
+      </view>
+    </view>
+    
+    <!-- 时间偏好 -->
+    <view class="filter-item">
+      <text class="filter-label">时间偏好</text>
+      <picker 
+        mode="time" 
+        value="{{preferredTime}}" 
+        bindchange="handleTimeChange"
+      >
+        <view class="picker-value">
+          {{preferredTime || '请选择'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 场地距离 -->
+    <view class="filter-item">
+      <text class="filter-label">场地距离</text>
+      <picker 
+        range="{{distanceOptions}}" 
+        value="{{selectedDistance}}" 
+        bindchange="handleDistanceChange"
+      >
+        <view class="picker-value">
+          {{distanceOptions[selectedDistance] || '请选择'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- 匹配结果列表 -->
+  <view class="match-list">
+    <block wx:if="{{matchedPlayers.length > 0}}">
+      <view 
+        class="player-card"
+        wx:for="{{matchedPlayers}}"
+        wx:key="_openid"
+      >
+        <view class="player-info">
+          <image class="player-avatar" src="{{item.avatarUrl}}" mode="aspectFill" />
+          <view class="player-details">
+            <text class="player-name">{{item.nickName}}</text>
+            <text class="player-level">Level: {{item.skillLevel}}</text>
+            <text class="player-style">风格: {{item.playStyle}}</text>
+          </view>
+        </view>
+        <view class="match-score">
+          <text class="score-label">匹配度</text>
+          <text class="score-value">{{item.matchScore}}%</text>
+        </view>
+        <button 
+          class="invite-btn" 
+          data-id="{{item._openid}}"
+          bindtap="handleInvite"
+        >
+          发起约战
+        </button>
+      </view>
+    </block>
+    <view class="empty-state" wx:else>
+      <image src="/assets/images/empty.png" mode="aspectFit" />
+      <text>暂无匹配的对手</text>
+    </view>
+  </view>
+</view>

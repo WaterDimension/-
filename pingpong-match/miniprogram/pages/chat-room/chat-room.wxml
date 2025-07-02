@@ -1,0 +1,77 @@
+<view class="chat-room">
+  <!-- 顶部导航栏 -->
+  <view class="chat-header">
+    <view class="back-btn" bindtap="handleBack">返回</view>
+    <view class="chat-title">{{nickname}}</view>
+  </view>
+
+  <scroll-view 
+    id="message-list"
+    class="message-list"
+    scroll-y
+    enhanced
+    show-scrollbar="{{false}}"
+    enable-back-to-top
+    scroll-top="{{scrollTop}}"
+    bindscrolltoupper="onScrollToUpper"
+    style="height: {{scrollViewHeight}}px"
+  >
+    <view class="loading" wx:if="{{loading}}">
+      <view class="loading-icon"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+
+    <view 
+      class="message-item {{item.from === targetUser ? 'received' : 'sent'}}"
+      wx:for="{{messages}}"
+      wx:key="_id"
+    >
+      <image 
+        class="avatar"
+        src="{{item.from === targetUser ? otherUserAvatar : myAvatar}}"
+        lazy-load
+      />
+      <view class="message-content">
+        <view class="message-time">
+          {{item.createTime}}
+        </view>
+        <view 
+          class="message-bubble {{item.type}}"
+          bindtap="{{item.type === 'image' ? 'onMessageImageTap' : ''}}"
+          data-url="{{item.content}}"
+          hover-class="{{item.type === 'image' ? 'bubble-hover' : ''}}"
+        >
+          <block wx:if="{{item.type === 'text'}}">
+            {{item.content}}
+          </block>
+          <image 
+            wx:elif="{{item.type === 'image'}}"
+            src="{{item.content}}"
+            mode="widthFix"
+            class="message-image"
+            lazy-load
+          />
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="input-area">
+    <input 
+      class="input"
+      value="{{inputValue}}"
+      placeholder="输入消息..."
+      confirm-type="send"
+      adjust-position="{{true}}"
+      cursor-spacing="20"
+      bindinput="handleInput"
+      bindconfirm="handleSend"
+    />
+    <button 
+      class="send-btn {{inputValue.trim() ? '' : 'disabled'}}"
+      disabled="{{!inputValue.trim()}}"
+      hover-class="button-hover"
+      bindtap="handleSend"
+    >发送</button>
+  </view>
+</view>

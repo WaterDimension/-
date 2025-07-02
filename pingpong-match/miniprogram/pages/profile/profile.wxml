@@ -1,0 +1,92 @@
+<view class="profile-container">
+  <!-- 用户信息部分 -->
+  <view class="user-info">
+    <block wx:if="{{!hasUserInfo}}">
+      <image class="avatar" src="/assets/images/default-avatar.png"></image>
+      <button 
+        wx:if="{{canIUseGetUserProfile}}"
+        class="auth-btn" 
+        bindtap="getUserProfile"
+      >授权登录</button>
+      <button 
+        wx:else 
+        class="auth-btn" 
+        open-type="getUserInfo" 
+        bindgetuserinfo="getUserInfo"
+      >授权登录</button>
+    </block>
+    <block wx:else>
+      <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+      <text class="nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+  <!-- 技术等级 -->
+  <view class="section">
+    <view class="section-title">技术等级</view>
+    <view class="skill-level">{{skillLevel || '新手'}}</view>
+  </view>
+
+  <!-- 打法风格 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">打法风格</view>
+      <view class="edit-btn" bindtap="toggleEdit">
+        {{isEditing ? '完成' : '编辑'}}
+      </view>
+    </view>
+    <view class="play-styles">
+      <view 
+        wx:for="{{playStyles}}" 
+        wx:key="id"
+        class="style-item {{item.selected ? 'selected' : ''}} {{!isEditing && !item.selected ? 'hidden' : ''}}"
+        data-index="{{index}}"
+        bindtap="selectPlayStyle"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 可约时间 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">可约时间</view>
+    </view>
+    <view class="schedule-grid">
+      <view class="time-header">时间段</view>
+      <view 
+        wx:for="{{weekDays}}" 
+        wx:key="*this" 
+        class="day-header"
+      >{{item}}</view>
+      
+      <block wx:for="{{timeSlots}}" wx:key="*this">
+        <view class="time-slot">{{item}}</view>
+        <view 
+          wx:for="{{weekDays}}" 
+          wx:key="*this"
+          wx:for-item="day"
+          class="schedule-cell {{schedule[day] && schedule[day].includes(timeSlots[index]) ? 'selected' : ''}}"
+          data-day="{{day}}"
+          data-slot="{{timeSlots[index]}}"
+          bindtap="toggleTimeSlot"
+        ></view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 保存按钮 -->
+  <button 
+    wx:if="{{isEditing}}"
+    class="save-btn" 
+    bindtap="saveProfile"
+  >保存</button>
+
+  <!-- 退出登录按钮 -->
+  <button 
+    wx:if="{{hasUserInfo}}"
+    class="logout-btn" 
+    bindtap="handleLogout"
+  >退出登录</button>
+</view>

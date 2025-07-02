@@ -1,0 +1,26 @@
+<view class="message {{isSent ? 'sent' : 'received'}}">
+  <view class="message-content">
+    <!-- 发送者昵称 -->
+    <view class="nickname">{{isSent ? '我' : nickname}}</view>
+    
+    <!-- 消息内容 -->
+    <view class="bubble {{message.type}}">
+      <!-- 文本消息 -->
+      <block wx:if="{{message.type === 'text'}}">
+        {{message.content}}
+      </block>
+      
+      <!-- 图片消息 -->
+      <image 
+        wx:elif="{{message.type === 'image'}}"
+        src="{{message.content}}"
+        mode="widthFix"
+        class="message-image"
+        bindtap="handleImageTap"
+      />
+    </view>
+
+    <!-- 消息时间 -->
+    <view class="time">{{formatTime(message.createTime)}}</view>
+  </view>
+</view>

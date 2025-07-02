@@ -1,0 +1,79 @@
+.match-filter {
+  background: #ffffff;
+  margin-bottom: 20rpx;
+}
+
+.filter-header {
+  height: 88rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.filter-title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.filter-icon {
+  color: var(--text-color-light);
+}
+
+.filter-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+
+.filter-content.show {
+  max-height: 1000rpx;
+}
+
+.filter-section {
+  padding: 30rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.section-title {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.section-desc {
+  font-size: 24rpx;
+  color: var(--text-color-light);
+  text-align: center;
+  display: block;
+  margin-top: 10rpx;
+}
+
+.style-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.style-tag {
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  background: #f5f5f5;
+  font-size: 28rpx;
+}
+
+.style-tag.selected {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+.filter-actions {
+  padding: 30rpx;
+  display: flex;
+  gap: 20rpx;
+}
+
+.filter-actions .btn {
+  flex: 1;
+}

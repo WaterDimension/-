@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "技术测评",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "evaluation-form": "../../components/evaluation-form/evaluation-form"
+  }
+}

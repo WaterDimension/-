@@ -1,0 +1,169 @@
+.profile-container {
+  padding: 20rpx;
+  background: #f8f8f8;
+  min-height: 100vh;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  background: #fff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+
+.nickname {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.auth-btn {
+  margin-top: 20rpx;
+  background: #1296db;
+  color: #fff;
+  border: none;
+  font-size: 28rpx;
+  padding: 16rpx 40rpx;
+  border-radius: 40rpx;
+}
+
+.section {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.edit-btn {
+  font-size: 28rpx;
+  color: #1296db;
+  padding: 10rpx 20rpx;
+}
+
+.skill-level {
+  font-size: 30rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.play-styles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.style-item {
+  padding: 12rpx 30rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  background: #f5f5f5;
+  color: #666;
+  border: 2rpx solid transparent;
+}
+
+.style-item.selected {
+  background: #e6f3fa;
+  color: #1296db;
+  border-color: #1296db;
+}
+
+.style-item.hidden {
+  display: none;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 180rpx repeat(7, 1fr);
+  gap: 2rpx;
+  background: #eee;
+  margin-top: 20rpx;
+}
+
+.time-header, .day-header {
+  background: #f8f8f8;
+  padding: 16rpx 8rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.time-slot {
+  background: #f8f8f8;
+  padding: 16rpx 8rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.schedule-cell {
+  background: #fff;
+  padding: 16rpx 8rpx;
+  text-align: center;
+  min-height: 30rpx;
+}
+
+.schedule-cell.selected {
+  background: #e6f3fa;
+  position: relative;
+}
+
+.schedule-cell.selected::after {
+  content: '✓';
+  color: #1296db;
+  font-size: 24rpx;
+}
+
+.save-btn {
+  width: 90%;
+  margin: 40rpx auto;
+  background: #1296db;
+  color: #fff;
+  border: none;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+  border-radius: 40rpx;
+}
+
+.save-btn:active {
+  opacity: 0.8;
+}
+
+.logout-btn {
+  width: 90%;
+  margin: 20rpx auto;
+  background: #fff;
+  color: #ff4d4f;
+  border: 2rpx solid #ff4d4f;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+  border-radius: 40rpx;
+}
+
+.logout-btn:active {
+  opacity: 0.8;
+}

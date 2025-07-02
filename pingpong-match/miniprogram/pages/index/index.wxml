@@ -1,0 +1,76 @@
+<view class="home-page">
+  <!-- 顶部欢迎区域 -->
+  <view class="header">
+    <view class="welcome">
+      <text class="title">乒乓约战</text>
+      <text class="subtitle">智能匹配 轻松约战</text>
+    </view>
+    <view class="user-info" wx:if="{{userInfo}}">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+      <text class="nickname">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+
+  <!-- 功能导航 - 修改导航方式 -->
+  <view class="nav-grid">
+    <navigator url="../evaluation/evaluation" class="nav-item" hover-class="nav-hover">
+      <image class="nav-icon" src="/assets/icons/level.png" mode="aspectFit" />
+      <text class="nav-text">技术测评</text>
+    </navigator>
+    
+    <navigator url="../match/match" class="nav-item" hover-class="nav-hover" open-type="switchTab">
+      <image class="nav-icon" src="/assets/icons/match.png" mode="aspectFit" />
+      <text class="nav-text">找对手</text>
+    </navigator>
+    
+    <navigator url="../schedule/schedule" class="nav-item" hover-class="nav-hover">
+      <image class="nav-icon" src="/assets/icons/schedule.png" mode="aspectFit" />
+      <text class="nav-text">日程安排</text>
+    </navigator>
+  </view>
+
+  <!-- 最近约战 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">最近约战</text>
+      <navigator url="../match/match" class="more" open-type="switchTab">查看更多 ></navigator>
+    </view>
+    <view class="match-list">
+      <view class="match-item" wx:for="{{recentMatches}}" wx:key="_id">
+        <view class="match-info">
+          <text class="match-time">{{item.selectedTime}}</text>
+          <text class="match-location">📍 {{item.location}}</text>
+        </view>
+        <view class="match-status {{item.status}}">{{item.status === 'accepted' ? '已确认' : '等待确认'}}</view>
+      </view>
+      <view class="empty-state" wx:if="{{recentMatches.length === 0}}">
+        <text>暂无约战记录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 系统公告 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">系统公告</text>
+    </view>
+    <view class="announcement-list">
+      <view class="announcement-item" wx:for="{{announcements}}" wx:key="_id">
+        <view class="announcement-content">
+          <text class="announcement-title">{{item.title}}</text>
+          <text class="announcement-time">{{item.createTime}}</text>
+        </view>
+        <view class="announcement-arrow">></view>
+      </view>
+      <view class="empty-state" wx:if="{{announcements.length === 0}}">
+        <text>暂无系统公告</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 加载提示 -->
+<view class="loading" wx:if="{{loading}}">
+  <view class="loading-icon"></view>
+  <text class="loading-text">加载中...</text>
+</view>

@@ -1,0 +1,67 @@
+.message {
+  margin-bottom: 30rpx;
+}
+
+.message.sent {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message.received {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+}
+
+.nickname {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.bubble {
+  padding: 20rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  word-break: break-all;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.sent .bubble {
+  background: #1296db;
+  color: #fff;
+}
+
+.received .bubble {
+  background: #fff;
+  color: #333;
+}
+
+.bubble.image {
+  padding: 8rpx;
+  background: transparent;
+}
+
+.message-image {
+  max-width: 100%;
+  border-radius: 8rpx;
+}
+
+.time {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+  text-align: right;
+}
+
+.sent .time {
+  text-align: right;
+}
+
+.received .time {
+  text-align: left;
+}
